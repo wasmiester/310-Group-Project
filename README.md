@@ -17,8 +17,13 @@ This bot requires nltk, pyspechecker, and stanza in order to run properly. If yo
     pip install nltk
     pip install pyspellchecker
     pip install stanza
-    
+    pip install googletrans==4.0.0-rc1
+    pip install requests
+
 Then you have to run py_lib_install.py so python can install the additional libraries. 
+
+## API USED
+I used Google translate API and Google Geocode API. Keep in min a google api needs to be generated in order to use the geocode API. If it is asked to translate a phrase it will use the googl translate API to do so as I wanted to give the bot a explorer vibe and the geo coding as I wanted him to be a good navigator.
 
 ## Dataset 
 This bot pulls from a json file with specifically designed responses for who, what, where, when, why style responses. Essentially, this bot smartly translates user text into queries to generate aproprait responses. 
@@ -159,3 +164,22 @@ Synonym detection was used in our chatbot in order to improve the greeting funct
 ### POS Tagging, Tokenization & Segmentation
 
 In order to better suit the keyword style bot that we have created, we needed to implement a way of understanding sentences that were input, and extract the necessary information required to generate a query that the bot can use to get a response. To do this, we used POS tagging, tokenization, and segmentation. These systems work together to process questions asked, and provide us with a query in the form of \<Noun\> \<Descriptor\> which we use to generate much more intricate and conversational dialogue.
+
+## get_translate:
+    
+    This function takes a phrase and returns a translated phrase.
+    
+    Parameter:
+        phrase: a string input by the user acting as the key for keywords
+        
+    Returns:
+        output: a string containing the translated phrase
+
+## get_coordinates:
+    This function takes an address and returns the coordinates of the address.
+
+    Parameter:
+        address: a string input by the user acting as the key for keywords
+    
+    Returns:
+        coordinates: a list of coordinates

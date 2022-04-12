@@ -51,7 +51,10 @@ class ChatScreen(tk.Frame):
         for char in punctuation:
             userInput = userInput.replace(char,' ')
         # Pass input through spell checking module
-        input = botbot.spell_check(userInput)
+        if "translate".lower() in userInput or "navigate".lower() in userInput:
+            input = userInput
+        else:
+            input = botbot.spell_check(userInput)
         print(input)
         # Get response from bot & update response label
         self.response = botbot.get_response(input)

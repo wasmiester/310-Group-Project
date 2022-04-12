@@ -127,5 +127,15 @@
         "where": "Monsters are everywhere! Have you seen gas prices these days? Truly monstrous...",
         "find": "I will pack some flashlights in case we find some monsters!",
         "fight": "You look strong enough, I'm sure we'll be fine!"
+    },
+    "languages": {
+        "what": "I speak a little bit of everything but my best trick is translate any language to English",
+        "where": "in my travels.",
+        "many": "I can speak a little bit of everything."
+    },
+    "directions": {
+        "how": "I have travelled every where in the search of atlantis.",
+        "where": "EVERYWHERE!"
     }
+    
 }

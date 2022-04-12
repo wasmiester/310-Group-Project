@@ -3,6 +3,8 @@ import syn_detection
 from data_utils.data_load import get_query_objects
 from spellchecker import SpellChecker
 import random
+import requests
+from googletrans import Translator
 
 TEXT_BODY_PATH = './text/atlantis.txt'
 ENTITY_DICT_PATH = 'data_utils/entity_dict.json'
@@ -34,6 +36,48 @@ def spell_check(input):
     return " ".join(correct)
 
 
+def get_translate(phrase):
+    """
+    This function takes a phrase and returns a translated phrase.
+    
+    Parameter:
+        phrase: a string input by the user acting as the key for keywords
+        
+    Returns:
+        output: a string containing the translated phrase
+    """
+    translator = Translator()
+    result = translator.translate(phrase, dest='en')
+    print("translated: " + phrase.split(maxsplit=1)[1])
+    return result.text
+
+def get_coordinates(address):
+    """
+    This function takes an address and returns the coordinates of the address.
+
+    Parameter:
+        address: a string input by the user acting as the key for keywords
+    
+    Returns:
+        coordinates: a list of coordinates
+    """
+    API_KEY = 'API KEY HERE'
+    address = address.replace(' ', '+')
+    params = {
+        'key': API_KEY,
+        'address': address
+    }
+    base_url = 'https://maps.googleapis.com/maps/api/geocode/json?'
+    response = requests.get(base_url, params=params)
+    data = response.json()
+    if data['status'] == 'OK':
+        result = data['results'][0]
+        location = result['geometry']['location']
+        coordinates = "Oh thats " + '{:.2f}'.format(location['lat']) + " Latititude and " + '{:.2f}'.format(location['lng'])+"Longitude"
+        return coordinates
+    else:
+        print('Error:', data)
+
 def get_response(query):
     """
     This function recieves the keyword dictionary, asks for user input, and returns chat bot responses. 
@@ -51,7 +95,10 @@ def get_response(query):
     """
     
     #entity_dict = get_entity_dict(ENTITY_DICT_PATH)
-
+    if "translate" in query:
+        return get_translate(query.split(maxsplit=1)[1])
+    if "navigate" in query:
+        return get_coordinates(query.split(maxsplit=1)[1])
     response = []
     # Find the objects in the user query
     for greeting in greetings:
@@ -60,7 +107,6 @@ def get_response(query):
     query_objects = get_query_objects(query)
     if query_objects is None:
         return responses[random.randint(0, len(responses) - 1)]
-
     else:
         response = search_json.search_noun_quest(query_objects[0], query_objects[1])
     # for obj in query_objects:
