@@ -33,6 +33,25 @@ This bot pulls from a json file with specifically designed responses for who, wh
 ### aBot.py 
 This directory includes all the files for the bot. 
 
+#### get_translate:
+    
+    This function takes a phrase and returns a translated phrase.
+    
+    Parameter:
+        phrase: a string input by the user acting as the key for keywords
+        
+    Returns:
+        output: a string containing the translated phrase
+
+#### get_coordinates:
+    This function takes an address and returns the coordinates of the address.
+
+    Parameter:
+        address: a string input by the user acting as the key for keywords
+    
+    Returns:
+        coordinates: a list of coordinates
+
 #### get_response
 This function recieves the keyword dictionary, asks for user input, and returns chat bot responses. User input is processed using `get_query_objects()`, which extracts nouns and proper nouns. A for-loop iterates through each processed noun in a list and detects if the word exists in entity_dict.json. If there is a match, that means there is a chat bot response for the keyword. If there is no keyword detected in the user response, then the bot returns "Sorry can't help provide any information that relates to [*whatever related noun the user entered*]". 
 
@@ -165,21 +184,8 @@ Synonym detection was used in our chatbot in order to improve the greeting funct
 
 In order to better suit the keyword style bot that we have created, we needed to implement a way of understanding sentences that were input, and extract the necessary information required to generate a query that the bot can use to get a response. To do this, we used POS tagging, tokenization, and segmentation. These systems work together to process questions asked, and provide us with a query in the form of \<Noun\> \<Descriptor\> which we use to generate much more intricate and conversational dialogue.
 
-## get_translate:
-    
-    This function takes a phrase and returns a translated phrase.
-    
-    Parameter:
-        phrase: a string input by the user acting as the key for keywords
-        
-    Returns:
-        output: a string containing the translated phrase
+### translation:
+    the bot can detect and translate any non english phrase to english. The only caviate is that it can only do to languages using the english alphabet for the rest you would need to install all the alphabeets and characters from other languages thus bloating the bot.
 
-## get_coordinates:
-    This function takes an address and returns the coordinates of the address.
-
-    Parameter:
-        address: a string input by the user acting as the key for keywords
-    
-    Returns:
-        coordinates: a list of coordinates
+### coordinates:
+    can turn any address to coordinate
