@@ -6,7 +6,7 @@ Interactive chatbot that takes on the role of a would-be Atlantis explorer. The 
 
 ## How to Run the Chat Bot 
 
-1. Download our GitHub repo 
+1. Download my GitHub repo 
 2. Open the repo using VSCode or Terminal 
 3. run `run_me_first.sh` (If you are uncomfortable running a bash script refer to dependencies.) 
 4. Run gui.py 
